@@ -309,11 +309,18 @@ public class Calendar extends CordovaPlugin {
       }
       final String accountName = new String(tempAccountName);
       
+      String accountType = getPossibleNullString("accountType", jsonFilter);
+      if(tempAccountType == null)
+      {
+        tempAccountType = CalendarContract.ACCOUNT_TYPE_LOCAL; 
+      }
+      final String accountType = new String(tempAccountType);
+      
 
       cordova.getThreadPool().execute(new Runnable() {
         @Override
         public void run() {
-          String createdId = getCalendarAccessor().createCalendar(calendarName, calendarColor, accountName);
+          String createdId = getCalendarAccessor().createCalendar(calendarName, calendarColor, accountName, accountType);
           callback.sendPluginResult(new PluginResult(PluginResult.Status.OK, createdId));
         }
       });
