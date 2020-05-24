@@ -309,7 +309,7 @@ public class Calendar extends CordovaPlugin {
       }
       final String accountName = new String(tempAccountName);
       
-      String accountType = getPossibleNullString("accountType", jsonFilter);
+      String tempAccountType = getPossibleNullString("accountType", jsonFilter);
       if(tempAccountType == null)
       {
         tempAccountType = CalendarContract.ACCOUNT_TYPE_LOCAL; 
