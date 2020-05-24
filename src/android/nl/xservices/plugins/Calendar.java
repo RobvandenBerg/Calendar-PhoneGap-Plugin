@@ -293,7 +293,7 @@ public class Calendar extends CordovaPlugin {
       requestReadWritePermission(PERMISSION_REQCODE_CREATE_CALENDAR);
       return;
     }
-
+    
     try {
       final JSONObject jsonFilter = args.getJSONObject(0);
       final String calendarColor = getPossibleNullString("calendarColor", jsonFilter);
@@ -302,11 +302,17 @@ public class Calendar extends CordovaPlugin {
         callback.error("calendarName is mandatory");
         return;
       }
+      
+      String accountName = "AccountName";
+      try
+      {
+        accountName = getPossibleNullString("accountName", jsonFilter); 
+      }
 
       cordova.getThreadPool().execute(new Runnable() {
         @Override
         public void run() {
-          String createdId = getCalendarAccessor().createCalendar(calendarName, calendarColor);
+          String createdId = getCalendarAccessor().createCalendar(calendarName, calendarColor, accountName);
           callback.sendPluginResult(new PluginResult(PluginResult.Status.OK, createdId));
         }
       });
