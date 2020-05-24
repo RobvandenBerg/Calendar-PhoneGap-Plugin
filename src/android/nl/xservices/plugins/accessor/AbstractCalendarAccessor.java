@@ -697,7 +697,7 @@ public abstract class AbstractCalendarAccessor {
             cv.put(CalendarContract.Calendars.VISIBLE, 1);
 			cv.put(CalendarContract.Calendars.CALENDAR_ACCESS_LEVEL, CalendarContract.Calendars.CAL_ACCESS_OWNER);
 			cv.put(CalendarContract.Calendars.OWNER_ACCOUNT, accountName );
-            cv.put(CalendarContract.Calendars.SYNC_EVENTS, 1);
+            cv.put(CalendarContract.Calendars.SYNC_EVENTS, 0);
 
             calUri = calUri.buildUpon()
                     .appendQueryParameter(CalendarContract.CALLER_IS_SYNCADAPTER, "true")
