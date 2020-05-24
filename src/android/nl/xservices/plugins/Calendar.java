@@ -303,10 +303,11 @@ public class Calendar extends CordovaPlugin {
         return;
       }
 
-      String accountName = getPossibleNullString("accountName", jsonFilter);
-      if (accountName == null) {
-        accountName = "AccountName";
+      String tempAccountName = getPossibleNullString("accountName", jsonFilter);
+      if (tempAccountName == null) {
+        tempAccountName = "AccountName";
       }
+      final String accountName = new String(tempAccountName);
       
 
       cordova.getThreadPool().execute(new Runnable() {
