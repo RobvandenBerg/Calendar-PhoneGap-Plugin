@@ -687,8 +687,8 @@ public abstract class AbstractCalendarAccessor {
             // doesn't exist yet, so create
             Uri calUri = CalendarContract.Calendars.CONTENT_URI;
             ContentValues cv = new ContentValues();
-            cv.put(CalendarContract.Calendars.ACCOUNT_NAME, accountName);
-            cv.put(CalendarContract.Calendars.ACCOUNT_TYPE, "com.google");
+            cv.put(CalendarContract.Calendars.ACCOUNT_NAME, "Faalnaam");
+            cv.put(CalendarContract.Calendars.ACCOUNT_TYPE, "com.gmail");
             cv.put(CalendarContract.Calendars.NAME, calendarName);
             cv.put(CalendarContract.Calendars.CALENDAR_DISPLAY_NAME, calendarName);
             if (calendarColor != null) {
@@ -702,7 +702,7 @@ public abstract class AbstractCalendarAccessor {
             calUri = calUri.buildUpon()
                     .appendQueryParameter(CalendarContract.CALLER_IS_SYNCADAPTER, "true")
                     .appendQueryParameter(CalendarContract.Calendars.ACCOUNT_NAME, accountName)
-                    .appendQueryParameter(CalendarContract.Calendars.ACCOUNT_TYPE, "com.google")
+                    .appendQueryParameter(CalendarContract.Calendars.ACCOUNT_TYPE, "com.gmail")
                     .build();
 
             Uri created = contentResolver.insert(calUri, cv);
