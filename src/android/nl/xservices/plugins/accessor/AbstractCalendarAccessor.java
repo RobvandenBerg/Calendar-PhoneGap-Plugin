@@ -152,7 +152,8 @@ public abstract class AbstractCalendarAccessor {
         ATTENDEES_EVENT_ID,
         ATTENDEES_NAME,
         ATTENDEES_EMAIL,
-        ATTENDEES_STATUS
+        ATTENDEES_STATUS,
+	CALENDARS_ACCOUNT_TYPE
     }
 
     protected abstract EnumMap<KeyIndex, String> initContentProviderKeys();
@@ -274,7 +275,8 @@ public abstract class AbstractCalendarAccessor {
                         this.getKey(KeyIndex.CALENDARS_ID),
                         this.getKey(KeyIndex.CALENDARS_NAME),
                         this.getKey(KeyIndex.CALENDARS_DISPLAY_NAME),
-                        this.getKey(KeyIndex.IS_PRIMARY)
+                        this.getKey(KeyIndex.IS_PRIMARY),
+			this.getKey(KeyIndex.CALENDARS_ACCOUNT_TYPE)
                 },
                 this.getKey(KeyIndex.CALENDARS_VISIBLE) + "=1", null, null
         );
@@ -289,6 +291,7 @@ public abstract class AbstractCalendarAccessor {
                 calendar.put("id", cursor.getString(cursor.getColumnIndex(this.getKey(KeyIndex.CALENDARS_ID))));
                 calendar.put("name", cursor.getString(cursor.getColumnIndex(this.getKey(KeyIndex.CALENDARS_NAME))));
                 calendar.put("displayname", cursor.getString(cursor.getColumnIndex(this.getKey(KeyIndex.CALENDARS_DISPLAY_NAME))));
+		calendar.put("account_type", cursor.getString(cursor.getColumnIndex(this.getKey(KeyIndex.CALENDARS_ACCOUNT_TYPE))));
                 primaryColumnIndex = cursor.getColumnIndex(this.getKey((KeyIndex.IS_PRIMARY)));
                 if (primaryColumnIndex == -1) {
                     primaryColumnIndex = cursor.getColumnIndex("COALESCE(isPrimary, ownerAccount = account_name)");
