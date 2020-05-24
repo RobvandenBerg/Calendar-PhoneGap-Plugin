@@ -668,7 +668,7 @@ public abstract class AbstractCalendarAccessor {
     }
 
     @SuppressWarnings("MissingPermission") // already requested in calling method
-    public String createCalendar(String calendarName, String calendarColor, String accountName) {
+    public String createCalendar(String calendarName, String calendarColor, String accountName, String accountType) {
         try {
             // don't create if it already exists
             Uri evuri = CalendarContract.Calendars.CONTENT_URI;
@@ -702,7 +702,7 @@ public abstract class AbstractCalendarAccessor {
             calUri = calUri.buildUpon()
                     .appendQueryParameter(CalendarContract.CALLER_IS_SYNCADAPTER, "true")
                     .appendQueryParameter(CalendarContract.Calendars.ACCOUNT_NAME, accountName)
-                    .appendQueryParameter(CalendarContract.Calendars.ACCOUNT_TYPE, CalendarContract.ACCOUNT_TYPE_LOCAL)
+                    .appendQueryParameter(CalendarContract.Calendars.ACCOUNT_TYPE, accountType)
                     .build();
 
             Uri created = contentResolver.insert(calUri, cv);
