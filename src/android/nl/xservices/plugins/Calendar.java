@@ -302,12 +302,12 @@ public class Calendar extends CordovaPlugin {
         callback.error("calendarName is mandatory");
         return;
       }
-      
-      String accountName = "AccountName";
-      try
-      {
-        accountName = getPossibleNullString("accountName", jsonFilter); 
+
+      String accountName = getPossibleNullString("accountName", jsonFilter);
+      if (accountName == null) {
+        accountName = "AccountName";
       }
+      
 
       cordova.getThreadPool().execute(new Runnable() {
         @Override
